@@ -1,0 +1,11 @@
+
+.env
+venv/
+.venv/
+__pycache__/
+*.pyc
+.vscode/
+
+# Exclude customer-level data
+data/
+analysis/cleaned_orders.csv

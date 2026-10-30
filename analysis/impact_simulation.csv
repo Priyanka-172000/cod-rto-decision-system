@@ -1,0 +1,4 @@
+scenario,eligible_orders,estimated_orders_affected,estimated_savings_inr,estimated_lost_contribution_inr,estimated_discount_cost_inr,estimated_net_impact_inr
+WhatsApp confirmation,235,41.7,23843.23,1931.42,0.0,21911.8
+Prepaid nudge,99,6.01,3435.25,0.0,642.51,2792.74
+Combined estimated impact,1987,47.71,27278.48,1931.42,642.51,24704.55

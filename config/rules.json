@@ -1,0 +1,24 @@
+{
+  "address": {
+    "short_address_max_chars": 15,
+    "verify_short_address": true
+  },
+  "customer_history": {
+    "high_rto_count": 2,
+    "require_confirmation_for_high_rto": true
+  },
+  "confirmation": {
+    "timeout_hours": 24,
+    "max_reminders": 1
+  },
+  "prepaid": {
+    "discount_percent": 5,
+    "minimum_order_value": 299
+  },
+  "decision": {
+    "high_risk_action": "WHATSAPP_CONFIRMATION",
+    "short_address_action": "WHATSAPP_CONFIRMATION",
+    "missing_address_action": "HOLD_CANCEL_REVIEW",
+    "no_reply_action": "HOLD_CANCEL_REVIEW"
+  }
+}

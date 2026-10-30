@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>COD RTO Decision Dashboard</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f5f9;
+    color: #182230;
+}
+
+header {
+    background: #172554;
+    color: white;
+    padding: 28px 5%;
+}
+
+header h1 {
+    margin: 0 0 8px;
+}
+
+header p {
+    margin: 0;
+    color: #dbeafe;
+}
+
+main {
+    max-width: 1200px;
+    margin: 24px auto;
+    padding: 0 20px 40px;
+}
+
+h2 {
+    margin-top: 30px;
+    margin-bottom: 16px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(210px, 1fr));
+    gap: 16px;
+}
+
+.metric-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px #0000000a;
+}
+
+.number {
+    font-size: 30px;
+    font-weight: 700;
+    margin: 10px 0;
+    overflow-wrap: anywhere;
+}
+
+.muted {
+    color: #667085;
+    font-size: 14px;
+}
+
+.bar-bg {
+    margin-top: 14px;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.bar {
+    height: 100%;
+    border-radius: 6px;
+}
+
+.panel {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 16px;
+    overflow-x: auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 760px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eaecf0;
+    font-size: 14px;
+}
+
+th {
+    background: #f9fafb;
+}
+
+.net {
+    color: #15803d;
+}
+
+.notice {
+    background: #fff7ed;
+    border-left: 5px solid #ea580c;
+    padding: 16px;
+    border-radius: 8px;
+    line-height: 1.6;
+    margin-top: 18px;
+}
+
+footer {
+    margin-top: 25px;
+    color: #667085;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 22px;
+    }
+
+    main {
+        padding: 0 12px 30px;
+    }
+
+    .number {
+        font-size: 25px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>COD RTO Decision Dashboard</h1>
+
+    <p>
+        Order risk analysis, decision distribution
+        and financial scenarios
+    </p>
+
+</header>
+
+<main>
+
+    <!-- DECISION DISTRIBUTION -->
+
+    <h2>Decision Distribution</h2>
+
+    <div class="grid">
+
+        
+    <div class="metric-card">
+        <div class="muted">Ship as-is</div>
+
+        <div class="number">1,654</div>
+
+        <div class="muted">
+            83.2% of evaluated orders
+        </div>
+
+        <div class="bar-bg">
+            <div class="bar"
+                 style="width:83.20%;background:#198754">
+            </div>
+        </div>
+    </div>
+    
+    <div class="metric-card">
+        <div class="muted">WhatsApp confirmation</div>
+
+        <div class="number">235</div>
+
+        <div class="muted">
+            11.8% of evaluated orders
+        </div>
+
+        <div class="bar-bg">
+            <div class="bar"
+                 style="width:11.82%;background:#2563eb">
+            </div>
+        </div>
+    </div>
+    
+    <div class="metric-card">
+        <div class="muted">Nudge to prepaid</div>
+
+        <div class="number">99</div>
+
+        <div class="muted">
+            5.0% of evaluated orders
+        </div>
+
+        <div class="bar-bg">
+            <div class="bar"
+                 style="width:4.98%;background:#d97706">
+            </div>
+        </div>
+    </div>
+    
+    <div class="metric-card">
+        <div class="muted">Hold / cancel review</div>
+
+        <div class="number">0</div>
+
+        <div class="muted">
+            0.0% of evaluated orders
+        </div>
+
+        <div class="bar-bg">
+            <div class="bar"
+                 style="width:0.00%;background:#dc3545">
+            </div>
+        </div>
+    </div>
+    
+
+    </div>
+
+
+    <!-- HISTORICAL OUTCOMES -->
+
+    <h2>Historical Outcomes</h2>
+
+    <div class="grid">
+
+        <div class="metric-card">
+
+            <div class="muted">
+                Orders evaluated
+            </div>
+
+            <div class="number">
+                1,988
+            </div>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <div class="muted">
+                Known final outcomes
+            </div>
+
+            <div class="number">
+                1,987
+            </div>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <div class="muted">
+                Delivered orders
+            </div>
+
+            <div class="number">
+                1,422
+            </div>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <div class="muted">
+                RTO orders
+            </div>
+
+            <div class="number">
+                565
+            </div>
+
+            <div class="muted">
+                Historical RTO rate: 28.43%
+            </div>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <div class="muted">
+                In-transit orders
+            </div>
+
+            <div class="number">
+                1
+            </div>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <div class="muted">
+                Unknown outcomes
+            </div>
+
+            <div class="number">
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FINANCIAL IMPACT -->
+
+    <h2>Estimated Financial Impact</h2>
+
+    <div class="grid">
+
+        <div class="metric-card">
+
+            <div class="muted">
+                Estimated total benefits
+            </div>
+
+            <div class="number">
+                ₹27,278.48
+            </div>
+
+            <div class="muted">
+                Includes estimated RTO costs
+                and delivery contribution
+            </div>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <div class="muted">
+                Potential lost contribution
+            </div>
+
+            <div class="number">
+                ₹1,931.42
+            </div>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <div class="muted">
+                Prepaid discount cost
+            </div>
+
+            <div class="number">
+                ₹642.51
+            </div>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <div class="muted">
+                Estimated net impact
+            </div>
+
+            <div class="number net">
+                ₹24,704.55
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SCENARIO TABLE -->
+
+    <div class="panel">
+
+        <h3>Scenario Breakdown (INR)</h3>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Scenario</th>
+
+                    <th>Eligible orders</th>
+
+                    <th>Estimated benefits</th>
+
+                    <th>Lost contribution</th>
+
+                    <th>Discount cost</th>
+
+                    <th>Net impact</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                
+    <tr>
+        <td>WhatsApp confirmation</td>
+
+        <td>235</td>
+
+        <td>
+            ₹23,843.23
+        </td>
+
+        <td>
+            ₹1,931.42
+        </td>
+
+        <td>
+            ₹0.00
+        </td>
+
+        <td>
+            <strong>
+                ₹21,911.80
+            </strong>
+        </td>
+    </tr>
+    
+    <tr>
+        <td>Prepaid nudge</td>
+
+        <td>99</td>
+
+        <td>
+            ₹3,435.25
+        </td>
+
+        <td>
+            ₹0.00
+        </td>
+
+        <td>
+            ₹642.51
+        </td>
+
+        <td>
+            <strong>
+                ₹2,792.74
+            </strong>
+        </td>
+    </tr>
+    
+    <tr>
+        <td>Combined estimated impact</td>
+
+        <td>1,987</td>
+
+        <td>
+            ₹27,278.48
+        </td>
+
+        <td>
+            ₹1,931.42
+        </td>
+
+        <td>
+            ₹642.51
+        </td>
+
+        <td>
+            <strong>
+                ₹24,704.55
+            </strong>
+        </td>
+    </tr>
+    
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- LIMITATIONS -->
+
+    <div class="notice">
+
+        <strong>Important Limitations:</strong>
+
+        Financial impact is a hypothetical scenario,
+        not verified savings.
+
+        Confirmation effectiveness, false-cancellation
+        rate, prepaid acceptance and prepaid RTO rates
+        are assumptions that need a controlled pilot.
+
+        The supplied sample contains COD orders only,
+        so prepaid outcomes are simulated.
+
+        Historical associations do not prove causation.
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        Generated from decision_log.csv and
+        impact_simulation.csv.
+
+        <br>
+
+        Run the Python analysis and simulation scripts
+        again after updating the decision rules.
+
+        <br>
+
+        Historical data is not a live daily report.
+
+    </footer>
+
+</main>
+
+</body>
+
+</html>

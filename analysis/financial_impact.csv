@@ -1,0 +1,8 @@
+metric,value,unit
+Orders with known outcomes,1987.0,orders
+Delivered orders,1422.0,orders
+RTO orders,565.0,orders
+Historical RTO rate,28.43,%
+Estimated cost per RTO,169.4,INR
+Estimated historical RTO cost,95711.0,INR
+Estimated contribution from delivered orders,572184.36,INR
