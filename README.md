@@ -2,11 +2,11 @@
 
 An AI-assisted Cash on Delivery (COD) risk analysis and decision-support system for a Direct-to-Consumer (D2C) e-commerce business.
 
-The system evaluates historical COD orders, identifies risk indicators, recommends an action for each order, simulates WhatsApp confirmation responses, and estimates the financial impact of reducing Return to Origin (RTO).
+The system analyzes historical COD orders, identifies risk indicators, recommends an action for each order, simulates WhatsApp confirmation responses, and estimates the financial impact of reducing Return to Origin (RTO).
 
 ## Business Problem
 
-The business experiences approximately 28% COD RTO. Each RTO creates shipping, handling and potential product-damage costs.
+The business experiences approximately 28% COD RTO. Each RTO creates shipping, handling, and potential product-damage costs.
 
 The goal is to reduce avoidable RTO while protecting genuine customers from unnecessary order cancellations.
 
@@ -38,16 +38,21 @@ The goal is to reduce avoidable RTO while protecting genuine customers from unne
 cod-rto-decision-system/
 │
 ├── analysis/
-│   ├── cleaned_orders.csv
+│   ├── address_group_analysis.csv
+│   ├── city_analysis.csv
+│   ├── courier_analysis.csv
+│   ├── customer_prior_orders_analysis.csv
+│   ├── customer_prior_rto_analysis.csv
 │   ├── decision_log.csv
 │   ├── financial_impact.csv
-│   └── impact_simulation.csv
+│   ├── impact_simulation.csv
+│   └── utm_source_analysis.csv
 │
 ├── config/
 │   └── rules.json
 │
 ├── data/
-│   └── orders_sample.csv
+│   └── orders_sample.csv  # Add locally; not committed
 │
 ├── analyze_orders.py
 ├── decision_engine.py
@@ -60,6 +65,7 @@ cod-rto-decision-system/
 ├── dashboard.html
 ├── test_gemini.py
 │
+├── Business_Memo.pdf
 ├── Business_Memo.docx
 ├── DECISION_LOG.md
 ├── AI_USAGE_LOG.md
@@ -74,25 +80,23 @@ cod-rto-decision-system/
 ### 1. Clone the repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/Priyanka-172000/cod-rto-decision-system.git
 cd cod-rto-decision-system
+```
 
-
-### Dataset Setup
+### 2. Dataset Setup
 
 The original customer-level dataset is excluded from this repository for privacy.
 
 Place your authorized, anonymized assignment dataset at:
 
-data/orders_sample.csv
+`data/orders_sample.csv`
 
-Then run the analysis scripts.
+Create the `data` directory if it does not already exist.
 
-The repository does not contain customer names, phone numbers, or delivery addresses.
+The repository does not intentionally distribute the original customer-level dataset.
 
-```
-
-### 2. Create a virtual environment
+### 3. Create a virtual environment
 
 Windows:
 
@@ -101,13 +105,13 @@ python -m venv venv
 venv\Scripts\activate
 ```
 
-### 3. Install dependencies
+### 4. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Configure environment variables
+### 5. Configure environment variables
 
 Create a `.env` file in the project root using `.env.example` as a reference.
 
@@ -134,7 +138,7 @@ Run these commands from the project root.
 python analyze_orders.py
 ```
 
-This cleans the dataset, removes exact duplicate records and generates analysis files for customer history, city, courier, marketing source and address length.
+This cleans the dataset, removes exact duplicate records, and generates analysis files for customer history, city, courier, marketing source, and address length.
 
 ### Step 2: Generate order decisions
 
@@ -160,7 +164,7 @@ This calculates estimated RTO costs and contribution from delivered orders using
 python simulate_impact.py
 ```
 
-This estimates potential RTO savings, lost contribution and prepaid discount costs using configurable scenario assumptions.
+This estimates potential RTO savings, lost contribution, and prepaid discount costs using configurable scenario assumptions.
 
 ### Step 5: Test WhatsApp responses
 
@@ -168,7 +172,7 @@ This estimates potential RTO savings, lost contribution and prepaid discount cos
 python whatsapp_simulator.py
 ```
 
-The simulator supports YES, NO, PREPAID, random replies and no-response timeout scenarios.
+The simulator supports YES, NO, PREPAID, random replies, and no-response timeout scenarios.
 
 ### Step 6: Generate the founder dashboard
 
@@ -188,12 +192,12 @@ This checks whether the configured Gemini API key and model can connect successf
 
 ## Decision Categories
 
-| Action                | Meaning                                             |
-| --------------------- | --------------------------------------------------- |
-| SHIP_AS_IS            | No configured rule requires additional verification |
-| WHATSAPP_CONFIRMATION | Confirm customer intent or delivery details         |
-| NUDGE_TO_PREPAID      | Offer an optional prepaid discount                  |
-| HOLD_CANCEL_REVIEW    | Hold the order for manual review                    |
+| Action | Meaning |
+|---|---|
+| `SHIP_AS_IS` | No configured rule requires additional verification |
+| `WHATSAPP_CONFIRMATION` | Confirm customer intent or delivery details |
+| `NUDGE_TO_PREPAID` | Offer an optional prepaid discount |
+| `HOLD_CANCEL_REVIEW` | Hold the order for manual review |
 
 ## Configurable Rules
 
@@ -211,7 +215,7 @@ The configuration includes:
 - Minimum order value for prepaid offers.
 - Actions for configured risk conditions.
 
-Operations users can adjust supported thresholds without editing the Python decision logic.
+Supported thresholds can be adjusted without editing the Python decision logic.
 
 ## Historical Analysis Results
 
@@ -244,7 +248,7 @@ This is a hypothetical scenario estimate, not measured or guaranteed savings. Ac
 
 The system separates tasks between deterministic code and AI:
 
-- Python handles numerical thresholds, order decisions and financial calculations.
+- Python handles numerical thresholds, order decisions, and financial calculations.
 - Gemini is intended for ambiguous customer names and address interpretation.
 - Local validation provides a fallback when the Gemini API is unavailable.
 
@@ -254,9 +258,10 @@ See `AI_USAGE_LOG.md` for details.
 
 ## Documentation
 
-- `Business_Memo.docx` – Business recommendations and financial trade-offs.
+- `Business_Memo.pdf` – Final business recommendations and financial trade-offs.
+- `Business_Memo.docx` – Editable business memo.
 - `DECISION_LOG.md` – Major implementation decisions and alternatives.
-- `AI_USAGE_LOG.md` – AI tools, limitations and corrections.
+- `AI_USAGE_LOG.md` – AI tools, limitations, and corrections.
 
 ## Limitations
 
