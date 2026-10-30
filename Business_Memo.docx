@@ -1,0 +1,111 @@
+# Business Memo: Reducing COD RTO Without Losing Genuine Customers
+
+**To:** Founder, D2C Haircare Brand  
+**From:** Associate Software Engineer – Take-Home Assignment  
+**Subject:** COD RTO Prevention Strategy and Estimated Financial Impact  
+**Date:** 30 October 2026
+
+## 1. Executive Summary
+
+The historical COD dataset contains 1,988 evaluated orders, of which 1,987 have known delivery outcomes. Among these, 565 orders were returned to origin, representing an RTO rate of **28.43%**.
+
+I developed a configurable decision engine that assigns each order one of four actions: ship as-is, request WhatsApp confirmation, nudge the customer to prepaid, or hold/cancel for review.
+
+The recommended approach is to reduce avoidable RTO costs without automatically rejecting potentially genuine customers. A scenario simulation estimates a positive net impact of **₹24,704.55** for the evaluated cohort. This is a model-based estimate, not verified savings.
+
+## 2. Three Important Findings
+
+**Finding 1 – RTO creates a meaningful cost per failed order.**
+
+Based on the assignment's cost assumptions, each RTO costs approximately ₹169.40:
+
+- Forward shipping: ₹65
+- Return shipping: ₹65
+- Packaging and handling: ₹25
+- Expected damage cost: 8% × ₹180 = ₹14.40
+
+For 565 historical RTO orders, the estimated total RTO cost is **₹95,711**.
+
+**Finding 2 – Most orders can still follow the normal shipping process.**
+
+The decision engine classified the 1,988 evaluated orders as follows:
+
+| Recommended action | Orders | Share |
+|---|---:|---:|
+| Ship as-is | 1,654 | 83.2% |
+| WhatsApp confirmation | 235 | 11.8% |
+| Nudge to prepaid | 99 | 5.0% |
+| Hold/cancel review | 0 | 0.0% |
+
+This supports a selective intervention strategy instead of slowing down every COD order.
+
+**Finding 3 – A small prepaid incentive has a measurable modelled cost.**
+
+The proposed prepaid discount is 5%. On an average order value of ₹649:
+
+- Discount: ₹649 × 5% = ₹32.45
+- Customer payment after discount: ₹616.55
+
+The simulation estimates a prepaid discount cost of ₹642.51 for the eligible orders that accept the offer under the assumed 20% acceptance rate.
+
+## 3. Recommended Decision Rules
+
+I recommend the following configurable rules:
+
+1. **Ship as-is:** Use when the order has no significant risk indicators.
+2. **WhatsApp confirmation:** Request confirmation for customers with repeated RTO history or incomplete/short address details.
+3. **Nudge to prepaid:** Offer a 5% discount to eligible customers with one previous RTO, subject to the configured minimum order value.
+4. **Hold/cancel review:** Hold orders with missing or clearly invalid address information for manual review. Do not automatically cancel solely because of a high-risk pincode or first-time COD purchase.
+
+These rules balance operational cost reduction with customer retention. Thresholds are stored in a configuration file so the operations team can adjust them without changing application code.
+
+The historical decision run assigned 235 orders to WhatsApp confirmation and 99 to prepaid nudges. These are retrospective classifications, not proof that the interventions would have changed those orders' actual outcomes.
+
+## 4. Operations Versus Marketing: Financial Trade-off
+
+Operations is right to focus on the estimated ₹169.40 cost of each RTO. Marketing is also right that cancelling genuine first-time customers can waste acquisition spending of ₹300 or more.
+
+The simulation uses the following assumptions:
+
+- WhatsApp confirmation prevents 30% of RTOs in its eligible group.
+- False cancellations affect 5% of delivered orders in that group.
+- Prepaid acceptance rate is 20%.
+- Prepaid RTO rate is 4%.
+- Prepaid discount is 5%.
+
+| Financial measure | Estimated amount |
+|---|---:|
+| Potential RTO savings | ₹27,278.48 |
+| Lost genuine-customer contribution | ₹1,931.42 |
+| Prepaid discount cost | ₹642.51 |
+| **Estimated net impact** | **₹24,704.55** |
+
+The proposed strategy does not choose Operations over Marketing. It uses confirmation and prepaid incentives to reduce risk while preserving the opportunity to serve genuine customers.
+
+## 5. Risks and How We Would Detect Them
+
+- **Genuine customers may not respond to WhatsApp:** Monitor confirmation response rates and manually review non-responses before cancellation.
+- **Incorrect address classification:** Review AI-flagged addresses and track false positives, especially for regional and Hinglish addresses.
+- **Prepaid discounts may reduce margins:** Compare additional prepaid conversions with discount costs and contribution margin.
+- **Historical patterns may change:** Monitor RTO rates weekly by customer history, courier, city and acquisition source.
+- **LLM errors or unavailable API:** Keep deterministic rules and local validation as a fallback. Do not let an LLM independently make financial calculations or automatic cancellation decisions.
+
+## 6. Next Two-Week Plan
+
+**Week 1 – Controlled pilot**
+- Test the decision engine on new incoming COD orders in shadow mode.
+- Validate WhatsApp messages and YES, NO, random reply and 24-hour timeout scenarios.
+- Review flagged orders manually.
+- Compare model decisions with actual delivery outcomes.
+
+**Week 2 – Measure and improve**
+- Run a limited WhatsApp confirmation and prepaid incentive pilot.
+- Measure confirmation response rate, prepaid conversion, RTO rate and genuine-order cancellation rate.
+- Compare actual shipping savings against discount costs and lost contribution.
+- Adjust thresholds using observed results before wider rollout.
+
+## Final Recommendation
+
+Start with selective WhatsApp confirmation and a modest 5% prepaid incentive. Avoid blanket COD restrictions and automatic cancellation of first-time customers. Expand the system only after a controlled pilot demonstrates that the reduction in RTO costs exceeds discount expenses and lost genuine-order contribution.
+
+**Important note:** All financial impact figures in this memo are scenario estimates based on the assignment assumptions. They should not be interpreted as realized savings or guaranteed future performance. The supplied historical sample is not a live order feed.
