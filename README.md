@@ -76,6 +76,20 @@ cod-rto-decision-system/
 ```bash
 git clone YOUR_GITHUB_REPOSITORY_URL
 cd cod-rto-decision-system
+
+
+### Dataset Setup
+
+The original customer-level dataset is excluded from this repository for privacy.
+
+Place your authorized, anonymized assignment dataset at:
+
+data/orders_sample.csv
+
+Then run the analysis scripts.
+
+The repository does not contain customer names, phone numbers, or delivery addresses.
+
 ```
 
 ### 2. Create a virtual environment
